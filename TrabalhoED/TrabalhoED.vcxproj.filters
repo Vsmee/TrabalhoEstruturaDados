@@ -18,5 +18,13 @@
     <ClCompile Include="TrabalhoED.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lista_estatica.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lista_estatica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
