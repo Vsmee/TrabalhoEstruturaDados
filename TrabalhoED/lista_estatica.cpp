@@ -80,6 +80,17 @@ void remover_posicao_listaE(Tlista_estatica& list, int posicao) {
 
 }
 
+int buscar_item_listaE(Tlista_estatica list, int item) {
+
+    for (int i = 0; i < list.quantidade; i++)
+    {
+        if (list.lista[i] == item) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void teste_listaE() {
 
     
@@ -95,6 +106,8 @@ void teste_listaE() {
     inserir_final_listaE(list, 6);
     remover_posicao_listaE(list, 1);
     remover_posicao_listaE(list, 2);
+
+    cout << buscar_item_listaE(list, 6) << endl;
 
 
     cout << "quantidade lista 1: " << list.quantidade << endl;

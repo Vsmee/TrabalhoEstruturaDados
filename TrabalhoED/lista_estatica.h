@@ -23,6 +23,8 @@ void remover_fim_listaE(Tlista_estatica& list);
 
 void remover_posicao_listaE(Tlista_estatica& list, int posicao);
 
+int buscar_item_listaE(Tlista_estatica list, int item);
+
 void teste_listaE();
 
 
