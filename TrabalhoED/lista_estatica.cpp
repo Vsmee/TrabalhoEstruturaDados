@@ -3,10 +3,6 @@
 
 using namespace std;
 
-void inicializar_listaE(string nome) {
-
-    Tlista_estatica nome;
-}
 
 void imprimir_lista(Tlista_estatica l) {
     for (int i = 0; i < l.quantidade; i++)
@@ -87,7 +83,7 @@ void remover_posicao_listaE(Tlista_estatica& list, int posicao) {
 void teste_listaE() {
 
     
-
+    Tlista_estatica list;
 
     inserir_inicio_listaE(list, 1);
     inserir_inicio_listaE(list, 2);
