@@ -4,14 +4,14 @@
 using namespace std;
 
 
-void imprimir_lista(Tlista_estatica l) {
+void imprimir_lista_estatica(Tlista_estatica l) {
     for (int i = 0; i < l.quantidade; i++)
     {
         cout << l.lista[i] << endl;
     }
 };
 
-void inserir_inicio_listaE(Tlista_estatica& list, int variavel) {
+void inserir_inicio_lista_estatica(Tlista_estatica& list, int variavel) {
 
     for (int i = list.quantidade; i > 0; i--)
     {
@@ -23,7 +23,7 @@ void inserir_inicio_listaE(Tlista_estatica& list, int variavel) {
 
 };
 
-void inserir_final_listaE(Tlista_estatica& list, int variavel) {
+void inserir_final_lista_estatica(Tlista_estatica& list, int variavel) {
 
     if (list.quantidade < TAM_lista) {
         list.lista[list.quantidade] = variavel;
@@ -36,7 +36,7 @@ void inserir_final_listaE(Tlista_estatica& list, int variavel) {
 
 }
 
-void inserir_posicao_listaE(Tlista_estatica& list, int valor, int posicao) {
+void inserir_posicao_lista_estatica(Tlista_estatica& list, int valor, int posicao) {
 
     for (int i = list.quantidade; i > posicao; i--)
     {
@@ -48,7 +48,7 @@ void inserir_posicao_listaE(Tlista_estatica& list, int valor, int posicao) {
 
 };
 
-void remover_inicio_listaE(Tlista_estatica& list) {
+void remover_inicio_lista_estatica(Tlista_estatica& list) {
 
     for (int i = 0; i <= list.quantidade; i++)
     {
@@ -59,7 +59,7 @@ void remover_inicio_listaE(Tlista_estatica& list) {
 
 };
 
-void remover_fim_listaE(Tlista_estatica& list) {
+void remover_fim_lista_estatica(Tlista_estatica& list) {
 
 
     list.lista[list.quantidade - 1] = 0;
@@ -68,7 +68,7 @@ void remover_fim_listaE(Tlista_estatica& list) {
 
 };
 
-void remover_posicao_listaE(Tlista_estatica& list, int posicao) {
+void remover_posicao_lista_estatica(Tlista_estatica& list, int posicao) {
 
     for (int i = posicao; i <= list.quantidade-1; i++)
     {
@@ -80,7 +80,7 @@ void remover_posicao_listaE(Tlista_estatica& list, int posicao) {
 
 }
 
-int buscar_item_listaE(Tlista_estatica list, int item) {
+int buscar_item_lista_estatica(Tlista_estatica list, int item) {
 
     for (int i = 0; i < list.quantidade; i++)
     {
@@ -91,27 +91,27 @@ int buscar_item_listaE(Tlista_estatica list, int item) {
     return -1;
 }
 
-void teste_listaE() {
+void teste_lista_estatica() {
 
     
     Tlista_estatica list;
 
-    inserir_inicio_listaE(list, 1);
-    inserir_inicio_listaE(list, 2);
-    inserir_posicao_listaE(list, 3, 0);
-    inserir_posicao_listaE(list, 4, 2);
-    remover_inicio_listaE(list);
-    remover_fim_listaE(list);
-    inserir_final_listaE(list, 5);
-    inserir_final_listaE(list, 6);
-    remover_posicao_listaE(list, 1);
-    remover_posicao_listaE(list, 2);
+    inserir_inicio_lista_estatica(list, 1);
+    inserir_inicio_lista_estatica(list, 2);
+    inserir_posicao_lista_estatica(list, 3, 0);
+    inserir_posicao_lista_estatica(list, 4, 2);
+    remover_inicio_lista_estatica(list);
+    remover_fim_lista_estatica(list);
+    inserir_final_lista_estatica(list, 5);
+    inserir_final_lista_estatica(list, 6);
+    remover_posicao_lista_estatica(list, 1);
+    remover_posicao_lista_estatica(list, 2);
 
-    cout << buscar_item_listaE(list, 6) << endl;
+    cout << buscar_item_lista_estatica(list, 6) << endl;
 
 
     cout << "quantidade lista 1: " << list.quantidade << endl;
-    imprimir_lista(list);
+    imprimir_lista_estatica(list);
  
 
 }
