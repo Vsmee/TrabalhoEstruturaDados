@@ -8,8 +8,9 @@ using namespace std;
 
 int main()
 {
+
 	//teste_lista_estatica();
 	//teste_lista_encadeada();
-	teste_lista_DE();
+	//teste_lista_DE();
 }
 

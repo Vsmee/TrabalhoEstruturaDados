@@ -105,7 +105,6 @@ void insere_na_posicao_lista_encadeada(TLista_encadeada<T>& lista, T dado, int p
 
 }
 
-
 template<typename T>
 void remover_inicio_lista_encadeada(TLista_encadeada<T>& lista) {
 

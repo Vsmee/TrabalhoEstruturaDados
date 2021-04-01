@@ -27,7 +27,6 @@ struct TLista_DE
     int TAM = 0;
 };
 
-
 template <typename T>
 void inicializa_list_DE(TLista_DE<T>& lista) {
 
@@ -63,7 +62,7 @@ void insere_inicio_lista_DE(TLista_DE<T>& lista, T dado) {
 }
 
 template <typename T>
-void insere_final_DE(TLista_DE<T>& lista, T dado) {
+void insere_final_lista_DE(TLista_DE<T>& lista, T dado) {
 
     TElemento_DE<T>* novo = novo_elemento_lista_D_E(dado);
     if (lista.primeiro == nullptr && lista.ultimo == nullptr) {
@@ -112,7 +111,7 @@ void insere_posicao_lista_DE(TLista_DE<T>& lista, T dado, int posicao) {
         }
         else if (posicao == lista.TAM) //posicao = final
         {
-            insere_final_DE(lista, dado);
+            insere_final_lista_DE(lista, dado);
         }
         else // posicao entre o fim e o inicio
         {
@@ -164,7 +163,7 @@ void remove_final_lista_DE(TLista_DE<T>& lista) {
     }
     else
     {
-        /*TElemento_D_E<T>* navegador = new TElemento_D_E<T>;
+        /*TElemento_D_E<T>* navegador = new TElemento_DE<T>;
         navegador = lista.primeiro;
         while (navegador->proximo != nullptr)
         {
@@ -225,6 +224,22 @@ void imprime_lista_DE(TLista_DE<T> lista) {
 
 }
 
+template <typename T>
+bool buscar_item_lista_DE(TLista_DE<T> lista, TDado item) {
+
+    TElemento_DE<T>* navegador = new TElemento_DE<T>;
+    navegador = lista.primeiro;
+    while (navegador->proximo != nullptr)
+    {
+        if (navegador->dado.autor == item.autor && navegador->dado.nome == item.nome)
+        {
+            return true;
+        }
+        navegador = navegador->proximo;
+    }
+    return false;
+}
+
 int teste_lista_DE()
 {
     TLista_DE<TDado> playlist;
@@ -241,9 +256,9 @@ int teste_lista_DE()
 
     inicializa_list_DE(playlist);
 
-    insere_final_DE(playlist, x);
-    insere_final_DE(playlist, q);
-    insere_final_DE(playlist, e);
+    insere_final_lista_DE(playlist, x);
+    insere_final_lista_DE(playlist, q);
+    insere_final_lista_DE(playlist, e);
     insere_inicio_lista_DE(playlist, e);
     remove_final_lista_DE(playlist);
     insere_posicao_lista_DE(playlist, q, 1);
@@ -253,9 +268,7 @@ int teste_lista_DE()
     insere_posicao_lista_DE(playlist, e, -1);
     remove_inicio_lista_DE(playlist);
     remove_posicao_lista_DE(playlist, 2);
-
-
-
+    cout << buscar_item_lista_DE(playlist, q) << endl;
 
     imprime_lista_DE(playlist);
     cout << playlist.TAM << endl;
