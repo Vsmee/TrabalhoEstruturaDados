@@ -1,7 +1,7 @@
 #pragma once
 
 const int TAM_lista = 80;
-const int QNT_lista = 79;
+
 
 struct Tlista_estatica
 {
