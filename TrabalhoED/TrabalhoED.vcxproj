@@ -143,6 +143,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lista_duplamente_encadeada.h" />
     <ClInclude Include="lista_encadeada.h" />
     <ClInclude Include="lista_estatica.h" />
   </ItemGroup>
