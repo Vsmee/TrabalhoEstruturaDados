@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <string>
 
 
 using namespace std;
@@ -158,12 +157,12 @@ void remove_inicio_lista_DE(TLista_DE<T>& lista) {
 template <typename T>
 void remove_final_lista_DE(TLista_DE<T>& lista) {
 
-    if (lista.primeiro == nullptr) {
+    if (lista.primeiro == nullptr || lista.ultimo == nullptr) {
         cout << "underFlow" << endl;
     }
     else
     {
-        /*TElemento_D_E<T>* navegador = new TElemento_DE<T>;
+        /*TElemento_DE<T>* navegador = new TElemento_DE<T>;
         navegador = lista.primeiro;
         while (navegador->proximo != nullptr)
         {
@@ -173,8 +172,8 @@ void remove_final_lista_DE(TLista_DE<T>& lista) {
 
         TElemento_DE<T>* temp = new TElemento_DE<T>;
         temp = lista.ultimo;
+        lista.ultimo->anterior->proximo = nullptr;
         lista.ultimo = lista.ultimo->anterior;
-        lista.ultimo->proximo = nullptr;
         delete temp;
         temp = nullptr;
 
@@ -190,6 +189,17 @@ void remove_posicao_lista_DE(TLista_DE<T>& lista, int posicao) {
     if (lista.primeiro == nullptr) {
         cout << "underFlow" << endl;
     }
+    else if (posicao < 0 || posicao > lista.TAM)
+    {
+        cout << "posicao invalida" << endl;
+    }
+    else if (posicao == 0) {
+        remove_inicio_lista_DE(lista); //posicao = inicio
+    }
+    else if (posicao == lista.TAM - 1) //posicao = final
+    {
+        remove_final_lista_DE(lista);
+    }
     else
     {
         TElemento_DE<T>* navegador = new TElemento_DE<T>;
@@ -198,14 +208,14 @@ void remove_posicao_lista_DE(TLista_DE<T>& lista, int posicao) {
         {
             navegador = navegador->proximo;
 
+
         }
-        TElemento_DE<T>* temp = new TElemento_DE<T>;
-        temp = navegador->proximo;
-
-        navegador->anterior->proximo = navegador->proximo->proximo;
-
-        delete temp;
-        temp = nullptr;
+        //TElemento_DE<T>* temp = new TElemento_DE<T>;
+        //temp = navegador;
+        navegador->proximo->proximo->anterior = navegador;
+        navegador->proximo = navegador->proximo->proximo;
+        //delete temp;
+        //temp = nullptr;
 
         lista.TAM--;
 
@@ -216,16 +226,46 @@ void remove_posicao_lista_DE(TLista_DE<T>& lista, int posicao) {
 template <typename T>
 void imprime_lista_DE(TLista_DE<T> lista) {
 
-    for (; lista.primeiro != nullptr; lista.primeiro = lista.primeiro->proximo)
-    {
-        cout << "Autor: " << lista.primeiro->dado.autor;
-        cout << " // Nome: " << lista.primeiro->dado.nome << endl;
+    if (lista.primeiro == nullptr) {
+        throw "List Underflow";
     }
+    TElemento_DE<T>* navegadorr = new TElemento_DE<T>;
+    navegadorr = lista.primeiro;
+    while (navegadorr != nullptr)
+    {
+
+        cout << "Autor: " << navegadorr->dado.autor;
+        cout << " // Nome: " << navegadorr->dado.nome << endl;
+        navegadorr = navegadorr->proximo;
+    }
+
 
 }
 
 template <typename T>
-bool buscar_item_lista_DE(TLista_DE<T> lista, TDado item) {
+T buscar_item_lista_DE(TLista_DE<T> lista, int indice) {
+
+     if ((indice < 0) || (indice > lista.TAM) || (lista.primeiro == nullptr && lista.ultimo == nullptr)) // fora do indice ou lista fazia
+    {
+         return lista.primeiro->dado; // tem q arrumar
+    }
+     else
+     {
+             TElemento_DE<T>* navegador = new TElemento_DE<T>;
+             navegador = lista.primeiro;
+             for (int i = 0; i < indice; i++)
+             {
+                 navegador = navegador->proximo;
+
+             }
+             return navegador->dado;
+     }
+
+
+}
+
+template <typename T>
+bool buscar_se_esta_na_lista_DE(TLista_DE<T> lista, TDado item) {
 
     TElemento_DE<T>* navegador = new TElemento_DE<T>;
     navegador = lista.primeiro;
@@ -238,6 +278,24 @@ bool buscar_item_lista_DE(TLista_DE<T> lista, TDado item) {
         navegador = navegador->proximo;
     }
     return false;
+}
+
+template <typename T>
+int buscar_indice_lista_DE(TLista_DE<T> lista, TDado item) {
+
+    int indice = 0;
+    TElemento_DE<T>* navegador = new TElemento_DE<T>;
+    navegador = lista.primeiro;
+    while (navegador->proximo != nullptr)
+    {
+        if (navegador->dado.autor == item.autor && navegador->dado.nome == item.nome)
+        {
+            return indice;
+        }
+        navegador = navegador->proximo;
+        indice++;
+    }
+    return -1;
 }
 
 int teste_lista_DE()
@@ -254,23 +312,38 @@ int teste_lista_DE()
     e.nome = "e";
     e.autor = "eee";
 
+
     inicializa_list_DE(playlist);
+
+    
 
     insere_final_lista_DE(playlist, x);
     insere_final_lista_DE(playlist, q);
     insere_final_lista_DE(playlist, e);
-    insere_inicio_lista_DE(playlist, e);
-    remove_final_lista_DE(playlist);
     insere_posicao_lista_DE(playlist, q, 1);
     insere_posicao_lista_DE(playlist, q, 0);
     insere_posicao_lista_DE(playlist, e, 5);
     insere_posicao_lista_DE(playlist, e, 8);
     insere_posicao_lista_DE(playlist, e, -1);
-    remove_inicio_lista_DE(playlist);
-    remove_posicao_lista_DE(playlist, 2);
-    cout << buscar_item_lista_DE(playlist, q) << endl;
 
-    imprime_lista_DE(playlist);
-    cout << playlist.TAM << endl;
+    try
+    {
+        remove_final_lista_DE(playlist);
+        remove_inicio_lista_DE(playlist);
+        remove_posicao_lista_DE(playlist, 1);
+        imprime_lista_DE(playlist);
+        cout << playlist.TAM << endl;
+        cout << "--------------------------" << endl;
+        cout << buscar_se_esta_na_lista_DE(playlist, q) << endl;
+        cout << buscar_item_lista_DE(playlist, 0).autor << endl;
+        cout << buscar_indice_lista_DE(playlist, q) << endl;
+    }
+    catch (const char* msg)
+    {
+        cout << msg << endl;
+    }
+
+
+
     return 0;
 }
