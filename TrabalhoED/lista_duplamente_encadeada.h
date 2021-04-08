@@ -13,7 +13,7 @@ struct TDado
 template <typename T>
 struct TElemento_DE
 {
-    TDado dado;
+    T dado;
     TElemento_DE<T>* proximo;
     TElemento_DE<T>* anterior;
 };
@@ -286,7 +286,7 @@ int buscar_indice_lista_DE(TLista_DE<T> lista, TDado item) {
     int indice = 0;
     TElemento_DE<T>* navegador = new TElemento_DE<T>;
     navegador = lista.primeiro;
-    while (navegador->proximo != nullptr)
+    while (navegador != nullptr)
     {
         if (navegador->dado.autor == item.autor && navegador->dado.nome == item.nome)
         {
