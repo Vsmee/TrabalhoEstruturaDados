@@ -24,11 +24,11 @@ using namespace std;
 
 int main()
 {
-	TLista_DE<evento> lista_eventos;
+	//TLista_DE<evento> lista_eventos;
 
 
 
-	//teste_lista_estatica();
+	teste_lista_estatica();
 	//teste_lista_encadeada();
 	//teste_lista_DE();
 
