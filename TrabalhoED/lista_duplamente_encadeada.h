@@ -243,7 +243,7 @@ void imprime_lista_DE(TLista_DE<T> lista) {
 }
 
 template <typename T>
-T buscar_item_lista_DE(TLista_DE<T> lista, int indice) {
+T obter_item_lista_DE(TLista_DE<T> lista, int indice) {
 
      if ((indice < 0) || (indice > lista.TAM) || (lista.primeiro == nullptr && lista.ultimo == nullptr)) // fora do indice ou lista fazia
     {
@@ -265,7 +265,7 @@ T buscar_item_lista_DE(TLista_DE<T> lista, int indice) {
 }
 
 template <typename T>
-bool buscar_se_esta_na_lista_DE(TLista_DE<T> lista, TDado item) {
+bool buscar_item_lista_DE(TLista_DE<T> lista, TDado item) {
 
     TElemento_DE<T>* navegador = new TElemento_DE<T>;
     navegador = lista.primeiro;
@@ -334,8 +334,8 @@ int teste_lista_DE()
         imprime_lista_DE(playlist);
         cout << playlist.TAM << endl;
         cout << "--------------------------" << endl;
-        cout << buscar_se_esta_na_lista_DE(playlist, q) << endl;
-        cout << buscar_item_lista_DE(playlist, 0).autor << endl;
+        cout << buscar_item_lista_DE(playlist, q) << endl;
+        cout << obter_item_lista_DE(playlist, 0).autor << endl;
         cout << buscar_indice_lista_DE(playlist, q) << endl;
     }
     catch (const char* msg)
