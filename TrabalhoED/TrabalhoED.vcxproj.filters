@@ -20,13 +20,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lista_estatica.h">
+    <ClInclude Include="lista_estatica_template.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lista_encadeada.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lista_duplamente_encadeada.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lista_estatica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="evento.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,56 +1,37 @@
-#pragma once
-#include <iostream>
+/*#include <iostream>
+#include "evento.h"
+
 using namespace std;
 
-template<typename T>
-struct TElemento_lista_estatica
-{
-    T dado;
-};
-
-template<typename T>
-struct Tlista_estatica
-{
-    TElemento_lista_estatica<T>* indice;
+struct Tlista_estatica{
     int quantidade;
-    int MAX;
-
+    int lista[10];
 };
 
-template<typename T>
-void inicializar_lista_estatica(Tlista_estatica<T>& lista, int capacidade) {
-    lista.quantidade = 0;
-    lista.indice = new TElemento_lista_estatica<T>[capacidade];
-    lista.MAX = capacidade;
-}
-
-template<typename T>
-void imprimir_lista_estatica(Tlista_estatica<T> l) {
-    for (int i = 0; i < l.quantidade; i++)
+void imprimir_lista_estatica(Tevento l) {
+    for (int i = 0; i < l.quantidade_subeventos; i++)
     {
-        cout << l.indice[i].dado << endl;
+        cout << l.lista_subevento[i].data << endl;
     }
 };
 
-template<typename T>
-void inserir_inicio_lista_estatica(Tlista_estatica<T>& list, T variavel) {
+void inserir_inicio_lista_estatica(Tevento& list, Tsubevento variavel) {
 
-    for (int i = list.quantidade; i > 0; i--)
+    for (int i = list.quantidade_subeventos; i > 0; i--)
     {
-        list.indice[i].dado = list.indice[i - 1].dado;
+        list.lista_subevento [i] = list.lista_subevento [i - 1];
     }
 
-    list.indice[0].dado = variavel;
-    list.quantidade++;
+    list.lista_subevento [0] = variavel;
+    list.quantidade_subeventos++;
 
 };
 
-template<typename T>
-void inserir_final_lista_estatica(Tlista_estatica<T>& list, T variavel) {
+void inserir_final_lista_estatica(Tevento& list, Tsubevento variavel) {
 
-    if (list.quantidade < list.MAX) {
-        list.indice[list.quantidade].dado = variavel;
-        list.quantidade++;
+    if (list.quantidade_subeventos < QNT_subevento) {
+        list.lista_subevento [list.quantidade_subeventos] = variavel;
+        list.quantidade_subeventos++;
     }
     else
     {
@@ -59,87 +40,57 @@ void inserir_final_lista_estatica(Tlista_estatica<T>& list, T variavel) {
 
 }
 
-template<typename T>
-void inserir_posicao_lista_estatica(Tlista_estatica<T>& list, T variavel, int posicao) {
+void inserir_posicao_lista_estatica(Tevento& list, Tsubevento valor, int posicao) {
 
-    for (int i = list.quantidade; i > posicao; i--)
+    for (int i = list.quantidade_subeventos; i > posicao; i--)
     {
-        list.indice[i].dado = list.indice[i - 1].dado;
+        list.lista_subevento[i] = list.lista_subevento[i - 1];
     }
 
-    list.indice[posicao].dado = variavel;
-    list.quantidade++;
+    list.lista_subevento[posicao] = valor;
+    list.quantidade_subeventos++;
 
 };
 
-template<typename T>
-void remover_inicio_lista_estatica(Tlista_estatica<T>& list) {
+void remover_inicio_lista_estatica(Tevento& list) {
 
-    for (int i = 0; i <= list.quantidade; i++)
+    for (int i = 0; i <= list.quantidade_subeventos; i++)
     {
-        list.indice[i].dado = list.indice[i + 1].dado;
+        list.lista_subevento[i] = list.lista_subevento[i + 1];
     }
 
-    list.quantidade--;
+    list.quantidade_subeventos--;
 
 };
 
-template<typename T>
-void remover_fim_lista_estatica(Tlista_estatica<T>& list) {
+void remover_fim_lista_estatica(Tevento& list) {
 
 
-    list.indice[list.quantidade - 1].dado = 0;
+    list.lista_subevento[list.quantidade_subeventos - 1]* = NULL;
 
-    list.quantidade--;
+    list.quantidade_subeventos--;
 
 };
 
-template<typename T>
-void remover_posicao_lista_estatica(Tlista_estatica<T>& list, int posicao) {
+void remover_posicao_lista_estatica(Tevento& list, int posicao) {
 
-    for (int i = posicao; i <= list.quantidade - 1; i++)
+    for (int i = posicao; i <= list.quantidade_subeventos - 1; i++)
     {
-        list.indice[i].dado = list.indice[i + 1].dado;
+        list.lista_subevento[i] = list.lista_subevento[i + 1];
     }
 
-    list.indice[list.quantidade].dado = 0;
-    list.quantidade--;
+    list.lista_subevento[list.quantidade_subeventos] = 0;
+    list.quantidade_subeventos--;
 
 }
 
-template<typename T>
-int buscar_item_lista_estatica(Tlista_estatica<T> list, T item) {
+int buscar_item_lista_estatica(Tevento list, Tsubevento item) {
 
-    for (int i = 0; i < list.quantidade; i++)
+    for (int i = 0; i < list.quantidade_subeventos; i++)
     {
-        if (list.indice[i].dado == item) {
+        if (list.lista_subevento[i].titulo == item.titulo) {
             return i;
         }
     }
     return -1;
-}
-
-void teste_lista_estatica() {
-
-    Tlista_estatica<int> list;
-
-    inicializar_lista_estatica(list, 100);
-
-    inserir_inicio_lista_estatica(list, 1);
-    inserir_inicio_lista_estatica(list, 2);
-    inserir_posicao_lista_estatica(list, 3, 0);
-    inserir_posicao_lista_estatica(list, 4, 2);
-    remover_inicio_lista_estatica(list);
-    remover_fim_lista_estatica(list);
-    inserir_final_lista_estatica(list, 5);
-    inserir_final_lista_estatica(list, 6);
-    remover_posicao_lista_estatica(list, 1);
-    remover_posicao_lista_estatica(list, 2);
-
-    cout << buscar_item_lista_estatica(list, 6) << endl;
-
-    cout << "AAAAAAA" << endl;
-    cout << "quantidade lista 1: " << list.quantidade << endl;
-    imprimir_lista_estatica(list);
-
-}
+}*/

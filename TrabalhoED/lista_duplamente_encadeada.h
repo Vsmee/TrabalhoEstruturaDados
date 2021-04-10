@@ -34,7 +34,7 @@ void inicializa_list_DE(TLista_DE<T>& lista) {
 }
 
 template <typename T>
-TElemento_DE<T>* novo_elemento_lista_D_E(T dado) {
+TElemento_DE<T>* novo_elemento_lista_DE(T dado) {
     TElemento_DE<T>* novo_elemento = new TElemento_DE<T>;
     novo_elemento->dado = dado;
     novo_elemento->proximo = nullptr;
@@ -44,7 +44,7 @@ TElemento_DE<T>* novo_elemento_lista_D_E(T dado) {
 template <typename T>
 void insere_inicio_lista_DE(TLista_DE<T>& lista, T dado) {
 
-    TElemento_DE<T>* novo = novo_elemento_lista_D_E(dado);
+    TElemento_DE<T>* novo = novo_elemento_lista_DE(dado);
     if (lista.primeiro == nullptr && lista.ultimo == nullptr) {
         novo->anterior = nullptr;
         lista.primeiro = novo;
@@ -63,7 +63,7 @@ void insere_inicio_lista_DE(TLista_DE<T>& lista, T dado) {
 template <typename T>
 void insere_final_lista_DE(TLista_DE<T>& lista, T dado) {
 
-    TElemento_DE<T>* novo = novo_elemento_lista_D_E(dado);
+    TElemento_DE<T>* novo = novo_elemento_lista_DE(dado);
     if (lista.primeiro == nullptr && lista.ultimo == nullptr) {
         novo->anterior = nullptr;
         lista.primeiro = novo;
@@ -98,7 +98,7 @@ void insere_posicao_lista_DE(TLista_DE<T>& lista, T dado, int posicao) {
     {
 
 
-        TElemento_DE<T>* novo = novo_elemento_lista_D_E(dado);
+        TElemento_DE<T>* novo = novo_elemento_lista_DE(dado);
         if (lista.primeiro == nullptr && lista.ultimo == nullptr) { //lista fazia
             novo->anterior = nullptr;
             lista.primeiro = novo;
