@@ -4,12 +4,25 @@ using namespace std;
 
 const int QNT_subevento = 10;
 
+struct TData {
+	int dia = 0;
+	int mes = 0;
+	int ano = 0;
+};
+
+struct THoras
+{
+	int hora = 0;
+	int minuto = 0;
+	int segundo = 0;
+};
+
 template <typename Tsub>
 struct Tevento {
 	string titulo;
-	int data_inicio[3] = { 0 }; // dia/mes/ano (00/00/0000)
-	int data_fim[3] = { 0 }; // dia/mes/ano (00/00/0000)
-	int hora[3] = { 0 }; // sec/min/hora (00:00:00:)
+	TData data_inicio; // dia/mes/ano (00/00/0000)
+	TData data_fim; // dia/mes/ano (00/00/0000)
+	THoras hora; // sec/min/hora (00:00:00:)
 	int vagas;
 	Tlista_esta<Tsub> lista_subevento;
 
@@ -17,8 +30,8 @@ struct Tevento {
 
 struct Tsubevento {
 	string titulo;
-	int data[3] = { 0 }; // dia/mes/ano (00/00/0000)
-	int hora[3] = { -1 }; // hora/min/sec (00:00:00:)
+	TData data; // dia/mes/ano (00/00/0000)
+	THoras hora; // hora/min/sec (00:00:00:)
 	int vagas;
 };
 
@@ -32,71 +45,71 @@ Tevento<Tsub> novo_evento() {
 
 	cout << "--- Data de Inicio ---" << endl;
 	cout << "Dia: ";
-	cin >> evento.data_inicio[0];
-	while (evento.data_inicio[0] < 1 || evento.data_inicio[0] > 31)
+	cin >> evento.data_inicio.dia;
+	while (evento.data_inicio.dia < 1 || evento.data_inicio.dia > 31)
 	{
 		cout << "Dia invalido, tente novamente: ";
-		cin >> evento.data_inicio[0];
+		cin >> evento.data_inicio.dia;
 	}
 	cout << "Mes: ";
-	cin >> evento.data_inicio[1];
-	while (evento.data_inicio[1] < 1 || evento.data_inicio[1] > 12)
+	cin >> evento.data_inicio.mes;
+	while (evento.data_inicio.mes < 1 || evento.data_inicio.mes > 12)
 	{
 		cout << "Mes invalido, tente novamente: ";
-		cin >> evento.data_inicio[1];
+		cin >> evento.data_inicio.mes;
 	}
 	cout << "ano: ";
-	cin >> evento.data_inicio[2];
-	while (evento.data_inicio[2] < 2021)
+	cin >> evento.data_inicio.ano;
+	while (evento.data_inicio.ano < 2021)
 	{
 		cout << "Ano invalido, tente novamente: ";
-		cin >> evento.data_inicio[2];
+		cin >> evento.data_inicio.ano;
 	}
 
 	cout << "--- Data de Termino---" << endl;
 	cout << "Dia: ";
-	cin >> evento.data_fim[0];
-	while (evento.data_fim[0] < 1 || evento.data_fim[0] > 31)
+	cin >> evento.data_fim.dia;
+	while (evento.data_fim.dia < 1 || evento.data_fim.dia > 31)
 	{
 		cout << "Dia invalido, tente novamente: ";
-		cin >> evento.data_fim[0];
+		cin >> evento.data_fim.dia;
 	}
 	cout << "Mes: ";
-	cin >> evento.data_fim[1];
-	while (evento.data_fim[1] < 1 || evento.data_fim[1] > 12)
+	cin >> evento.data_fim.mes;
+	while (evento.data_fim.mes < 1 || evento.data_fim.mes > 12)
 	{
 		cout << "Mes invalido, tente novamente: ";
-		cin >> evento.data_fim[1];
+		cin >> evento.data_fim.mes;
 	}
 	cout << "ano: ";
-	cin >> evento.data_fim[2];
-	while (evento.data_fim[2] < 2021)
+	cin >> evento.data_fim.ano;
+	while (evento.data_fim.ano < 2021)
 	{
 		cout << "Ano invalido, tente novamente: ";
-		cin >> evento.data_fim[2];
+		cin >> evento.data_fim.ano;
 	}
 
 	cout << "--- Horario do Evento --- " << endl;
 	cout << "Hora: ";
-	cin >> evento.hora[0];
-	while (evento.hora[0] < 0 || evento.hora[0] > 23)
+	cin >> evento.hora.hora;
+	while (evento.hora.hora < 0 || evento.hora.hora > 23)
 	{
 		cout << "Hora invalida, tente novamente: ";
-		cin >> evento.hora[0];
+		cin >> evento.hora.hora;
 	}
 	cout << "Minuto: ";
-	cin >> evento.hora[1];
-	while (evento.hora[1] < 0 || evento.hora[1] > 59)
+	cin >> evento.hora.minuto;
+	while (evento.hora.minuto < 0 || evento.hora.minuto > 59)
 	{
 		cout << "Minuto invalido, tente novamente: ";
-		cin >> evento.hora[1];
+		cin >> evento.hora.minuto;
 	}
 	cout << "segundo: ";
-	cin >> evento.hora[2];
-	while (evento.hora[2] < 0 || evento.hora[2] > 59)
+	cin >> evento.hora.segundo;
+	while (evento.hora.segundo < 0 || evento.hora.segundo > 59)
 	{
 		cout << "Segundo invalido, tente novamente: ";
-		cin >> evento.hora[2];
+		cin >> evento.hora.segundo;
 	}
 
 	cout << "--- Vagas --- " << endl;
@@ -121,48 +134,48 @@ Tsubevento novo_subevento() {
 
 	cout << "--- Data de Inicio ---" << endl;
 	cout << "Dia: ";
-	cin >> evento.data[0];
-	while (evento.data[0] < 1 || evento.data[0] > 31)
+	cin >> evento.data.dia;
+	while (evento.data.dia < 1 || evento.data.dia > 31)
 	{
 		cout << "Dia invalido, tente novamente: ";
-		cin >> evento.data[0];
+		cin >> evento.data.dia;
 	}
 	cout << "Mes: ";
-	cin >> evento.data[1];
-	while (evento.data[1] < 1 || evento.data[1] > 12)
+	cin >> evento.data.mes;
+	while (evento.data.mes < 1 || evento.data.mes > 12)
 	{
 		cout << "Mes invalido, tente novamente: ";
-		cin >> evento.data[1];
+		cin >> evento.data.mes;
 	}
 	cout << "ano: ";
-	cin >> evento.data[2];
-	while (evento.data[2] < 2021)
+	cin >> evento.data.ano;
+	while (evento.data.ano < 2021)
 	{
 		cout << "Ano invalido, tente novamente: ";
-		cin >> evento.data[2];
+		cin >> evento.data.ano;
 	}
 
 	cout << "--- Horario do Evento --- " << endl;
 	cout << "Hora: ";
-	cin >> evento.hora[0];
-	while (evento.hora[0] < 0 || evento.hora[0] > 23)
+	cin >> evento.hora.hora;
+	while (evento.hora.hora < 0 || evento.hora.hora > 23)
 	{
 		cout << "Hora invalida, tente novamente: ";
-		cin >> evento.hora[0];
+		cin >> evento.hora.hora;
 	}
 	cout << "Minuto: ";
-	cin >> evento.hora[1];
-	while (evento.hora[1] < 0 || evento.hora[1] > 59)
+	cin >> evento.hora.minuto;
+	while (evento.hora.minuto < 0 || evento.hora.minuto > 59)
 	{
 		cout << "Minuto invalido, tente novamente: ";
-		cin >> evento.hora[1];
+		cin >> evento.hora.minuto;
 	}
 	cout << "segundo: ";
-	cin >> evento.hora[2];
-	while (evento.hora[2] < 0 || evento.hora[2] > 59)
+	cin >> evento.hora.segundo;
+	while (evento.hora.segundo < 0 || evento.hora.segundo > 59)
 	{
 		cout << "Segundo invalido, tente novamente: ";
-		cin >> evento.hora[2];
+		cin >> evento.hora.segundo;
 	}
 
 	cout << "--- Vagas --- " << endl;
@@ -173,7 +186,6 @@ Tsubevento novo_subevento() {
 		cout << "Vaga invalida, tente novamente: ";
 		cin >> evento.vagas;
 	}
-
 	return evento;
 
 }
@@ -181,20 +193,17 @@ Tsubevento novo_subevento() {
 template <typename Tevent>
 Tevento<Tevent> teste_novo_evento(int variavel) {
 	Tevento<Tevent> evento;
+	evento.data_inicio.ano = variavel;
+	evento.data_inicio.dia = variavel;
+	evento.data_inicio.mes = variavel;
 
-	evento.titulo = "teste";
-	for (int i = 0; i < 3; i++)
-	{
-		evento.data_fim[i] = variavel + 1;
-	}
-	for (int i = 0; i < 3; i++)
-	{
-		evento.data_inicio[i] = variavel;
-	}
-	for (int i = 0; i < 3; i++)
-	{
-		evento.hora[i] = variavel;
-	}
+	evento.data_fim.ano = variavel;
+	evento.data_fim.dia = variavel;
+	evento.data_fim.mes = variavel;
+
+	evento.hora.hora = variavel;
+	evento.hora.minuto = variavel;
+	evento.hora.segundo = variavel;
 	evento.vagas = variavel * 10;
 	return evento;
 
@@ -204,14 +213,15 @@ Tsubevento teste_novo_subevento(int variavel) {
 	Tsubevento evento;
 
 	evento.titulo = "teste subevento";
-	for (int i = 0; i < 3; i++)
-	{
-		evento.data[i] = variavel;
-	}
-	for (int i = 0; i < 3; i++)
-	{
-		evento.hora[i] = variavel;
-	}
+
+	evento.data.ano = variavel;
+	evento.data.dia = variavel;
+	evento.data.mes = variavel;
+
+	evento.hora.hora = variavel;
+	evento.hora.minuto = variavel;
+	evento.hora.segundo = variavel;
+
 	evento.vagas = variavel * 10;
 	return evento;
 

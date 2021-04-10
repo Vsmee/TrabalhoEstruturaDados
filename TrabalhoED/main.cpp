@@ -38,6 +38,8 @@ void mostra_lista_eventos(TLista_DE<T>& lista_eventos) {
 	}
 	lista_eventos.primeiro->dado;
 }
+
+
 int main()
 {
 	int menu = -1;
