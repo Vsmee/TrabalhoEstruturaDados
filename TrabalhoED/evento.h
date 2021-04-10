@@ -17,17 +17,6 @@ struct THoras
 	int segundo = 0;
 };
 
-template <typename Tsub>
-struct Tevento {
-	string titulo;
-	TData data_inicio; // dia/mes/ano (00/00/0000)
-	TData data_fim; // dia/mes/ano (00/00/0000)
-	THoras hora; // sec/min/hora (00:00:00:)
-	int vagas;
-	Tlista_esta<Tsub> lista_subevento;
-
-};
-
 struct Tsubevento {
 	string titulo;
 	TData data; // dia/mes/ano (00/00/0000)
@@ -35,10 +24,21 @@ struct Tsubevento {
 	int vagas;
 };
 
-template <typename Tsub>
-Tevento<Tsub> novo_evento() {
+struct Tevento {
+	string titulo;
+	TData data_inicio; // dia/mes/ano (00/00/0000)
+	TData data_fim; // dia/mes/ano (00/00/0000)
+	THoras hora; // sec/min/hora (00:00:00:)
+	int vagas;
+	Tlista_esta<Tsubevento> lista_subevento;
 
-	Tevento<Tsubevento> evento;
+};
+
+
+
+Tevento novo_evento() {
+
+	Tevento evento;
 	cout << "--- Titulo do Evento --- " << endl;
 	cout << "Titulo: ";
 	cin >> evento.titulo;
@@ -134,6 +134,7 @@ Tsubevento novo_subevento() {
 
 	cout << "--- Data de Inicio ---" << endl;
 	cout << "Dia: ";
+
 	cin >> evento.data.dia;
 	while (evento.data.dia < 1 || evento.data.dia > 31)
 	{
@@ -190,9 +191,11 @@ Tsubevento novo_subevento() {
 
 }
 
-template <typename Tevent>
-Tevento<Tevent> teste_novo_evento(int variavel) {
-	Tevento<Tevent> evento;
+
+Tevento teste_novo_evento(int variavel) {
+	Tevento evento;
+	evento.titulo = "teste";
+
 	evento.data_inicio.ano = variavel;
 	evento.data_inicio.dia = variavel;
 	evento.data_inicio.mes = variavel;

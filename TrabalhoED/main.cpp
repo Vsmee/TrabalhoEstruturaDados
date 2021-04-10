@@ -23,27 +23,27 @@ void mostra_menu(int& menu) {
 
 }
 
-template<typename T>
-void mostra_lista_eventos(TLista_DE<T>& lista_eventos) {
+void mostra_lista_eventos(TLista_DE<Tevento>& lista_eventos) {
 
 	int i = 0;
 	cout << "Eventos Disponiveis: " << endl;
-	TElemento_DE<T>* navegador = lista_eventos.primeiro;
+	TElemento_DE<Tevento>* navegador = lista_eventos.primeiro;
+	i++;
+	cout << i << "- " << navegador->dado.titulo << endl;
 	while (navegador->proximo != nullptr)
 	{
 		navegador = navegador->proximo;
 		i++;
-		cout << i << "- " << navegador->dado << endl;
-		
+		cout << i << "- " << navegador->dado.titulo << endl;
 	}
-	lista_eventos.primeiro->dado;
-}
+	cout << "Escolha um evento: " << endl;
 
+}
 
 int main()
 {
 	int menu = -1;
-	TLista_DE<Tevento<Tsubevento>> lista_eventos;
+	TLista_DE<Tevento> lista_eventos;
 	inicializa_list_DE(lista_eventos);
 	
 
@@ -56,19 +56,21 @@ int main()
 		if (menu == 1)
 		{
 			//Tevento<Tsubevento> show1 = novo_evento<Tsubevento>();
-			insere_final_lista_DE(lista_eventos, teste_novo_evento<Tsubevento>(1));
+			insere_final_lista_DE(lista_eventos, teste_novo_evento(1));
 		}
 		if (menu == 2)
 		{
-			//mostra_lista_eventos<Tevento<Tsubevento>>(lista_eventos);
+			mostra_lista_eventos(lista_eventos);
+			int evento_escolhido;
+			cin >> evento_escolhido;
 			Tsubevento sub1 = novo_subevento();
-			inicializar_lista_estaticaTP(lista_eventos.primeiro->dado.lista_subevento, 10);
-			inserir_final_lista_estaticaTP(lista_eventos.primeiro->dado.lista_subevento, sub1);
+			Tlista_esta<Tsubevento> listaes_colhida =  navegador_lista_DE<Tevento>(lista_eventos, evento_escolhido)->dado.lista_subevento;
+			inicializar_lista_estaticaTP(listaes_colhida, 10);
+			inserir_final_lista_estaticaTP(listaes_colhida, sub1);
 			
 		}
 		//system("cls");
 	}
-	cout << lista_eventos.primeiro->dado.lista_subevento.indice[0].dado.titulo << endl;
 
 	//teste_lista_estatica();
 	//teste_lista_encadeada();
