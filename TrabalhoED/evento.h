@@ -17,6 +17,10 @@ struct THoras
 	int segundo = 0;
 };
 
+struct TPoessoa {
+	string nome;
+};
+
 struct Tsubevento {
 	string titulo;
 	TData data; // dia/mes/ano (00/00/0000)
@@ -31,6 +35,8 @@ struct Tevento {
 	THoras hora; // sec/min/hora (00:00:00:)
 	int vagas;
 	Tlista_esta<Tsubevento> lista_subevento;
+	Tlista_esta<TPoessoa> lista_incricoes;
+	Tlista_esta<TPoessoa> lista_espera;
 
 };
 
@@ -191,10 +197,9 @@ Tsubevento novo_subevento() {
 
 }
 
-
 Tevento teste_novo_evento(int variavel) {
 	Tevento evento;
-	evento.titulo = "teste";
+	evento.titulo = "teste evento";
 
 	evento.data_inicio.ano = variavel;
 	evento.data_inicio.dia = variavel;
