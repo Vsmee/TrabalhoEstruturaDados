@@ -143,7 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="evento.h" />
-    <ClInclude Include="lista_estatica.h" />
     <ClInclude Include="lista_duplamente_encadeada.h" />
     <ClInclude Include="lista_encadeada.h" />
     <ClInclude Include="lista_estatica_template.h" />

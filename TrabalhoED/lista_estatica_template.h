@@ -12,20 +12,20 @@ template<typename T>
 struct Tlista_esta
 {
     TElemento_lista_estatica<T>* indice;
-    int quantidade;
+    int quantidade = 0;
     int MAX;
 
 };
 
 template<typename T>
-void inicializar_lista_estaticaTP(Tlista_esta<T>& lista, int capacidade) {
+void inicializar_lista_estatica(Tlista_esta<T>& lista, int capacidade) {
     lista.quantidade = 0;
     lista.indice = new TElemento_lista_estatica<T>[capacidade];
     lista.MAX = capacidade;
 }
 
 template<typename T>
-void imprimir_lista_estaticaTP(Tlista_esta<T> l) {
+void imprimir_lista_estatica(Tlista_esta<T> l) {
     for (int i = 0; i < l.quantidade; i++)
     {
         cout << l.indice[i].dado << endl;
@@ -33,7 +33,7 @@ void imprimir_lista_estaticaTP(Tlista_esta<T> l) {
 };
 
 template<typename T>
-void inserir_inicio_lista_estaticaTP(Tlista_esta<T>& list, T variavel) {
+void inserir_inicio_lista_estatica(Tlista_esta<T>& list, T variavel) {
 
     for (int i = list.quantidade; i > 0; i--)
     {
@@ -46,7 +46,7 @@ void inserir_inicio_lista_estaticaTP(Tlista_esta<T>& list, T variavel) {
 };
 
 template<typename T>
-void inserir_final_lista_estaticaTP(Tlista_esta<T>& list, T variavel) {
+void inserir_final_lista_estatica(Tlista_esta<T>& list, T variavel) {
 
     if (list.quantidade < list.MAX) {
         list.indice[list.quantidade].dado = variavel;
@@ -60,7 +60,7 @@ void inserir_final_lista_estaticaTP(Tlista_esta<T>& list, T variavel) {
 }
 
 template<typename T>
-void inserir_posicao_lista_estaticaTP(Tlista_esta<T>& list, T variavel, int posicao) {
+void inserir_posicao_lista_estatica(Tlista_esta<T>& list, T variavel, int posicao) {
 
     for (int i = list.quantidade; i > posicao; i--)
     {
@@ -73,7 +73,7 @@ void inserir_posicao_lista_estaticaTP(Tlista_esta<T>& list, T variavel, int posi
 };
 
 template<typename T>
-void remover_inicio_lista_estaticaTP(Tlista_esta<T>& list) {
+void remover_inicio_lista_estatica(Tlista_esta<T>& list) {
 
     for (int i = 0; i <= list.quantidade; i++)
     {
@@ -85,7 +85,7 @@ void remover_inicio_lista_estaticaTP(Tlista_esta<T>& list) {
 };
 
 template<typename T>
-void remover_fim_lista_estaticaTP(Tlista_esta<T>& list) {
+void remover_fim_lista_estatica(Tlista_esta<T>& list) {
 
 
     list.indice[list.quantidade - 1].dado = 0;
@@ -95,7 +95,7 @@ void remover_fim_lista_estaticaTP(Tlista_esta<T>& list) {
 };
 
 template<typename T>
-void remover_posicao_lista_estaticaTP(Tlista_esta<T>& list, int posicao) {
+void remover_posicao_lista_estatica(Tlista_esta<T>& list, int posicao) {
 
     for (int i = posicao; i <= list.quantidade - 1; i++)
     {
@@ -108,7 +108,7 @@ void remover_posicao_lista_estaticaTP(Tlista_esta<T>& list, int posicao) {
 }
 
 template<typename T>
-int buscar_item_lista_estaticaTP(Tlista_esta<T> list, T item) {
+int buscar_item_lista_estatica(Tlista_esta<T> list, T item) {
 
     for (int i = 0; i < list.quantidade; i++)
     {

@@ -98,10 +98,6 @@ int main()
 	int menu = -1;
 	TLista_DE<Tevento> lista_eventos;
 	inicializa_list_DE(lista_eventos);
-	
-
-	//Tsubevento sub1 = novo_subevento();
-	Tsubevento sub1 = teste_novo_subevento(2);
 
 	while (menu != 0)
 	{
@@ -110,7 +106,8 @@ int main()
 		{
 			
 			//Tevento<Tsubevento> show1 = novo_evento<Tsubevento>();
-			insere_final_lista_DE(lista_eventos, teste_novo_evento(1));
+			Tevento show1 = teste_novo_evento(1);
+			insere_final_lista_DE(lista_eventos, show1);
 		}
 		if (menu == 2)
 		{
@@ -122,8 +119,11 @@ int main()
 				cin >> numero_evento_escolhido;
 				//Tsubevento sub1 = novo_subevento();
 				Tsubevento sub1 = teste_novo_subevento(3);
-				inicializar_lista_estaticaTP(navegador_lista_DE<Tevento>(lista_eventos, numero_evento_escolhido)->dado.lista_subevento, 10);
-				inserir_final_lista_estaticaTP(navegador_lista_DE<Tevento>(lista_eventos, numero_evento_escolhido)->dado.lista_subevento, sub1);
+				if (navegador_lista_DE<Tevento>(lista_eventos, numero_evento_escolhido)->dado.lista_subevento.quantidade == 0)
+				{
+					inicializar_lista_estatica(navegador_lista_DE<Tevento>(lista_eventos, numero_evento_escolhido)->dado.lista_subevento, 10);
+				};
+				inserir_final_lista_estatica(navegador_lista_DE<Tevento>(lista_eventos, numero_evento_escolhido)->dado.lista_subevento, sub1);
 			}
 			else {
 				cout << "Nao foi possivel adicionar um subevento, pois a lista de eventos esta vazia (Adicione um evento)" << endl;
