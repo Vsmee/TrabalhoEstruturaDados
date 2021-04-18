@@ -88,7 +88,7 @@ void insere_final_lista_DE(TLista_DE<T>& lista, T dado) {
 }
 
 template <typename T>
-TElemento_DE<T>* navegador_lista_DE(TLista_DE<T>& lista,int posicao) {
+TElemento_DE<T>* navegador_lista_DE(TLista_DE<T>& lista, int posicao) {
     TElemento_DE<T>* navegador = new TElemento_DE<T>;
     navegador = lista.primeiro;
     for (int i = 0; i < posicao - 1; i++)
@@ -125,7 +125,12 @@ void insere_posicao_lista_DE(TLista_DE<T>& lista, T dado, int posicao) {
         }
         else // posicao entre o fim e o inicio
         {
-            TElemento_DE<T>* navegador = navegador_lista_DE(lista, posicao);
+            TElemento_DE<T>* navegador = new TElemento_DE<T>;
+            navegador = lista.primeiro;
+            for (int i = 0; i < posicao - 1; i++)
+            {
+                navegador = navegador->proximo;
+            }
             novo->anterior = navegador;
             novo->proximo = navegador->proximo;
             navegador->proximo = novo;

@@ -17,8 +17,9 @@ struct THoras
 	int segundo = 0;
 };
 
-struct TPoessoa {
+struct TPessoa {
 	string nome;
+	string rg;
 };
 
 struct Tsubevento {
@@ -26,6 +27,8 @@ struct Tsubevento {
 	TData data; // dia/mes/ano (00/00/0000)
 	THoras hora; // hora/min/sec (00:00:00:)
 	int vagas;
+	Tlista_esta<TPessoa> lista_incricoes;
+	Tlista_esta<TPessoa> lista_espera;
 };
 
 struct Tevento {
@@ -35,8 +38,8 @@ struct Tevento {
 	THoras hora; // sec/min/hora (00:00:00:)
 	int vagas;
 	Tlista_esta<Tsubevento> lista_subevento;
-	Tlista_esta<TPoessoa> lista_incricoes;
-	Tlista_esta<TPoessoa> lista_espera;
+	Tlista_esta<TPessoa> lista_incricoes;
+	Tlista_esta<TPessoa> lista_espera;
 
 };
 
@@ -233,4 +236,11 @@ Tsubevento teste_novo_subevento(int variavel) {
 	evento.vagas = variavel * 10;
 	return evento;
 
+}
+
+TPessoa teste_nova_pessoa() {
+	TPessoa pessoa;
+	pessoa.nome = "Fulano";
+	pessoa.rg = "12345";
+	return pessoa;
 }

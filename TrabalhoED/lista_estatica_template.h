@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 using namespace std;
 
 template<typename T>
@@ -108,15 +109,37 @@ void remover_posicao_lista_estatica(Tlista_esta<T>& list, int posicao) {
 }
 
 template<typename T>
-int buscar_item_lista_estatica(Tlista_esta<T> list, T item) {
+int buscar_indice_lista_estatica(Tlista_esta<T> list, T item) {
 
     for (int i = 0; i < list.quantidade; i++)
     {
-        if (list.indice[i].dado == item) {
+        if (verificador_sobrecarregado_lista_estatica(list, i, item) == true) {
             return i;
         }
     }
     return -1;
+}
+
+
+bool verificador_sobrecarregado_lista_estatica(Tlista_esta<int> list,int indice,int item) {
+
+    if (list.indice[indice].dado == item) {
+        return true;
+    }
+    return false;
+
+}
+
+template<typename T>
+bool buscar_item_lista_estatica(Tlista_esta<T> list, T item) {
+
+    for (int i = 0; i < list.quantidade; i++)
+    {
+        if (verificador_sobrecarregado_lista_estatica(list, i, item) == true) {
+            return true;
+        }
+    }
+    return false;
 }
 
 /*void teste_lista_estaticaTP() {
